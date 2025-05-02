@@ -1,0 +1,17 @@
+services:
+    capslock-nginx-service:
+        build:
+            context: .
+            dockerfile: ./nginx/Dockerfile
+        container_name: capslock-nginx-container
+        volumes:
+            - ./../:/var/www/capslock/
+        ports: ['6000:80']
+    capslock-php-service:
+        build:
+            context: .
+            dockerfile: ./php/Dockerfile
+        container_name: capslock-php-container
+        ports: ['6001:9000']
+        volumes:
+            - ./../:/var/www/capslock/
