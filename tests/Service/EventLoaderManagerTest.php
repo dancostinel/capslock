@@ -133,11 +133,10 @@ class EventLoaderManagerTest extends MockeryTestCase
         $this->getMocksLastEventIdForSources($sourceNames);
 
         $eventDto4 = new EventDto(1, ['testing1', 'testing2', 'testing3'], 'source4');
-        $eventDto8 = new EventDto(
-            4,
-            ['resource' => fopen('/var/www/capslock/tests/TestData/test.txt', 'r')],
-            'source8'
-        );
+
+        $resource = [];
+        $resource['test'] = &$resource;
+        $eventDto8 = new EventDto(4, $resource, 'source8');
 
         $this->getMocksEventsAndReleaseLocks($eventDto4, $eventDto8);
         $this->getMocksEventsLoggerMessages();
